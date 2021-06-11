@@ -4,7 +4,8 @@
 # echo "Collect static files"
 # python manage.py collectstatic --noinput
 
-./wait-for-it.sh db:5432
+cd /code/backEnd/
+/wait-for-it.sh db:5432
 
 # Apply database migrations
  echo "Apply database migrations"

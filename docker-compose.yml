@@ -15,23 +15,24 @@ services:
     build: 
         context: ./backEnd
         dockerfile: Dockerfile
-    # command: python manage.py runserver 0.0.0.0:8000
-    # command: daphne backEnd.asgi:application
-    entrypoint: "/code/entrypoint.sh"
+    entrypoint: "/entrypoint.sh"
     volumes:
       - .:/code
     ports:
       - 8000:8000
     depends_on:
       - db
-  # front:
-  #   image: angulardocker
-  #   build:
-  #       context: ./frontEnd
-  #       dockerfile: Dockerfile
-  #   ports:
-  #       - 4200:4200
-  #   depends_on:
-  #       - django
+  front:
+    build:
+        context: ./frontEnd
+        dockerfile: Dockerfile
+    # command: /bin/sh -c "entrypoint.sh"
+    entrypoint: "/entrypoint.sh"
+    ports:
+        - 4200:4200
+    depends_on:
+        - django
+        - db
     volumes:
         - "./data/db:/var/lib/postgresql/data:rw"
+        # - "/Users/zoran.pecic/Desktop/TravelingCompanionApp/frontEnd/entrypoint.sh:/app/entrypoint.sh"

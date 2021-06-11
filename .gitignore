@@ -1,3 +1,7 @@
 data/db/*
 frontEnd/node_modules/*
+backEnd/venv/*
+backEnd/.idea/*
+frontEnd/.idea/*
+
 

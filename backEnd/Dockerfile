@@ -3,7 +3,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-COPY ./backEnd/ /code/
+COPY ./ /code/
 RUN python -m pip install daphne
 COPY entrypoint.sh /
 COPY wait-for-it.sh /

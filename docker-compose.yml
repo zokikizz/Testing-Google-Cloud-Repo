@@ -1,0 +1,37 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    ports:
+        - 5432:5432
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=travelApp
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=adminadmin
+  django:
+    build: 
+        context: ./backEnd
+        dockerfile: Dockerfile
+    # command: python manage.py runserver 0.0.0.0:8000
+    # command: daphne backEnd.asgi:application
+    entrypoint: "/code/entrypoint.sh"
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  # front:
+  #   image: angulardocker
+  #   build:
+  #       context: ./frontEnd
+  #       dockerfile: Dockerfile
+  #   ports:
+  #       - 4200:4200
+  #   depends_on:
+  #       - django
+    volumes:
+        - "./data/db:/var/lib/postgresql/data:rw"

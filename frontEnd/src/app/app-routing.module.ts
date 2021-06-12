@@ -1,9 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import {TravelAuthComponent} from '../../projects/travel-auth/src/lib/travel-auth.component';
+import {AppComponent} from './app.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent }
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+      {
+        path: '',
+        component: TravelAuthComponent,
+      },
+      {
+        path: 'login',
+        component: TravelAuthComponent,
+      }
+    ]
+  }
 ];
 
 @NgModule({

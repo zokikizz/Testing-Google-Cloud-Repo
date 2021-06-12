@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container, .sign-up-container {
+  display: flex;
+  width: 30vw;
+  height: 50vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  mat-form-field {
+    width: 80%;
+  }
+
+  button {
+    width: 50%;
+  }
+}

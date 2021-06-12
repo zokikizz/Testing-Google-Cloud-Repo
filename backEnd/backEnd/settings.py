@@ -25,8 +25,6 @@ SECRET_KEY = 'django-insecure-p*q6$@n^4nevt@i0^!o+tbx)p)gohn$r2-2uyxx+(!z(81!wh7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -37,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 
     # setup rest
     'rest_framework',
@@ -52,11 +51,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -96,7 +97,7 @@ DATABASES = {
         # The following settings are not used with sqlite3:
         'USER': 'admin',
         'PASSWORD': 'adminadmin',
-        'HOST': 'db',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'HOST':  '127.0.0.1',  # 'db',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '5432',  # Set to empty string for default.
     }
     # 'default': {
@@ -163,4 +164,6 @@ REST_USE_JWT = True
 
 # disable conformation email
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CORS_ORIGIN_ALLOW_ALL = True
 

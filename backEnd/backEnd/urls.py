@@ -22,8 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # auth routes
-    path('api/auth/', include('dj_rest_auth.urls')),
-    path('api/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/v1/auth/', include('dj_rest_auth.urls')),
+    path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
     # path('')
     # path('api/facebook', trips_views.FacebookLogin.as_view(), name='fb_login')
 ]

@@ -19,7 +19,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "travel-auth": [
+        "dist/travel-auth/travel-auth",
+        "dist/travel-auth"
+      ],
+      "travel-core": [
+        "dist/travel-core/travel-core",
+        "dist/travel-core"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import (Trip, Destination, Transit)
+from .models import Trip
 
 UserModel = get_user_model()
 
@@ -23,22 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TripSerializer(serializers.ModelSerializer):
-    # travelers = serializers.PrimaryKeyRelatedField(many=True)
 
     class Meta:
         model = Trip
-        fields = '__all__'
-
-
-class DestinationSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = '__all__'
-
-
-class TransitSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Transit
         fields = '__all__'

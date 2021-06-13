@@ -11,17 +11,17 @@ services:
       - POSTGRES_DB=travelApp
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=adminadmin
-  # django:
-  #   build: 
-  #       context: ./backEnd
-  #       dockerfile: Dockerfile
-  #   entrypoint: "/entrypoint.sh"
-  #   volumes:
-  #     - ./backEnd:/code
-  #   ports:
-  #     - 8000:8000
-  #   depends_on:
-  #     - db
+  django:
+    build: 
+        context: ./backEnd
+        dockerfile: Dockerfile
+    entrypoint: "/entrypoint.sh"
+    volumes:
+      - ./backEnd:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
   # front:
   #   image: angulardjango
   #   build:

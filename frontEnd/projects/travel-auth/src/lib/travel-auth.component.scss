@@ -1,23 +1,46 @@
+@import "~@angular/material/theming";
+
+
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
 }
 
 .login-container, .sign-up-container {
   display: flex;
-  width: 30vw;
-  height: 50vh;
+  width: 35vw;
+  height: 70vh;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 
+  * {
+    margin-top: 20px;
+  }
+
   mat-form-field {
-    width: 80%;
+    width: 90%;
   }
 
   button {
     width: 50%;
+  }
+
+  .actions {
+    display: flex;
+    width: 100%;
+  }
+
+  .facebook-sign-up-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: mat-color(mat-palette($mat-indigo));
+    mat-icon {
+      margin-top: 0;
+      color: white;
+    }
   }
 }

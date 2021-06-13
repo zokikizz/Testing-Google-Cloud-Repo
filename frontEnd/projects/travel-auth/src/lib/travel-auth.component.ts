@@ -3,14 +3,15 @@ import {TravelAuthService} from './travel-auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginInterface} from './interfaces/login.interface';
 import {SignupInterface} from './interfaces/signup.interface';
+import {FacebookLoginProvider, SocialAuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'lib-TravelAuth',
   template: `
+    <h1>Travel app</h1>
     <mat-tab-group class="login-container sign-up-container">
       <mat-tab label="Login">
         <form class="login-container" [formGroup]="loginForm">
-          <h1>Login: </h1>
           <mat-form-field class="example-full-width">
             <mat-label>Username</mat-label>
             <input matInput placeholder="Username" formControlName="username"/>
@@ -26,7 +27,6 @@ import {SignupInterface} from './interfaces/signup.interface';
 
       <mat-tab label="Sign up">
         <form class="sign-up-container" [formGroup]="signUpForm">
-          <h1>Sign up: </h1>
           <mat-form-field class="example-full-width">
             <mat-label>Username</mat-label>
             <input matInput placeholder="Username" formControlName="username"/>
@@ -47,7 +47,12 @@ import {SignupInterface} from './interfaces/signup.interface';
             <input matInput placeholder="password" type="password" formControlName="password2"/>
           </mat-form-field>
 
-          <button mat-stroked-button (click)="signUp()">Sign up</button>
+          <div class="actions">
+            <button mat-stroked-button (click)="signUp()">Sign up</button>
+            <button mat-stroked-button class="facebook-sign-up-button" (click)="signUpWithFacebook()">
+              <mat-icon>facebook</mat-icon>
+            </button>
+          </div>
         </form>
       </mat-tab>
     </mat-tab-group>
@@ -59,7 +64,7 @@ export class TravelAuthComponent implements OnInit {
   loginForm: FormGroup;
   signUpForm: FormGroup;
 
-  constructor(private auth: TravelAuthService, private fb: FormBuilder) {
+  constructor(private auth: TravelAuthService, private fb: FormBuilder, private facebookService: SocialAuthService) {
     this.loginForm = this.fb.group({
       username: '',
       password: ''
@@ -73,7 +78,6 @@ export class TravelAuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.auth.getData().subscribe(v => console.log(`response ${JSON.stringify(v)}`));
   }
 
   logIn(): void {
@@ -87,5 +91,13 @@ export class TravelAuthComponent implements OnInit {
     this.auth.signUp(this.signUpForm.value as SignupInterface).subscribe(v => {
       console.log(v);
     });
+  }
+
+  signUpWithFacebook(): void {
+    this.facebookService.signIn(FacebookLoginProvider.PROVIDER_ID).then(value => {
+      console.log(value);
+      this.auth.signUpWithFacebook(value.authToken).subscribe(v => console.log(v));
+    });
+
   }
 }

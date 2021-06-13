@@ -7,6 +7,7 @@ import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatButtonModule,
     MatTabsModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   exports: [
     TravelAuthComponent

@@ -15,16 +15,16 @@ export class TravelAuthService {
     // @Inject(APP_CONFIG) private appConfig: AppConfig,
     private http: HttpClient) { }
 
-  getData(): Observable<any> {
-    // console.log(this.appConfig);
-    return this.http.get('https://jsonplaceholder.typicode.com/todos/1');
-  }
-
   logIn(cred: LoginInterface): Observable<any> {
     return this.http.post(`${this.baseUrl}/api/v1/auth/login/`, { ...cred });
   }
 
   signUp(cred: SignupInterface): Observable<any> {
     return this.http.post(`${this.baseUrl}/api/v1/auth/registration/`, { ...cred });
+  }
+
+  signUpWithFacebook(authToken: string): Observable<any> {
+    console.log('test');
+    return this.http.post(`${this.baseUrl}/facebook/`, { access_token: authToken } );
   }
 }

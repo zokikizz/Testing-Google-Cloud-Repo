@@ -9,8 +9,8 @@ export class AuthInterceptor implements HttpInterceptor {
     console.log('auth intercept');
     return next.handle(httpRequest).pipe(
       tap((v) => {
-        if ( v instanceof HttpResponse) {
-          console.log(v.body);
+        if ( v instanceof HttpResponse && v.body.access_token && httpRequest.url.indexOf('facebook') === -1) {
+          // console.log(v.body);
           localStorage.setItem('auth', JSON.stringify(v.body));
         }
       })

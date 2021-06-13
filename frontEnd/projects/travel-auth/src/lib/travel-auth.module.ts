@@ -8,6 +8,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import {CommonModule} from '@angular/common';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatTabsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatSnackBarModule,
+    CommonModule,
   ],
   exports: [
     TravelAuthComponent

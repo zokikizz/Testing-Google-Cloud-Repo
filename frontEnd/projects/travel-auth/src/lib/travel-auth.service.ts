@@ -9,22 +9,18 @@ import {SignupInterface} from './interfaces/signup.interface';
   providedIn: 'root',
 })
 export class TravelAuthService {
-  readonly baseUrl = 'http://localhost:8000';
+  readonly baseUrl = 'http://localhost:8000/api/v1';
 
   constructor(
     // @Inject(APP_CONFIG) private appConfig: AppConfig,
     private http: HttpClient) { }
 
   logIn(cred: LoginInterface): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/v1/auth/login/`, { ...cred });
+    return this.http.post(`${this.baseUrl}/token`, { ...cred });
   }
 
   signUp(cred: SignupInterface): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/v1/auth/registration/`, { ...cred });
+    return this.http.post(`${this.baseUrl}/register`, { ...cred });
   }
 
-  signUpWithFacebook(authToken: string): Observable<any> {
-    console.log('test');
-    return this.http.post(`${this.baseUrl}/facebook/`, { access_token: authToken } );
-  }
 }

@@ -1,3 +1,3 @@
 # TravelingCompanionApp
 
-##### Just type in console `docker-compose up` and it should work
+##### Just type in console/terminal `docker-compose up` and it should work

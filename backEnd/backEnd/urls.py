@@ -15,15 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from trips import views as trips_views
-# from views import profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # auth routes
-    path('api/v1/auth/', include('dj_rest_auth.urls')),
-    path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
-    # path('')
-    # path('api/facebook', trips_views.FacebookLogin.as_view(), name='fb_login')
+    path('api/v1/', include('travelApp.urls')),
 ]

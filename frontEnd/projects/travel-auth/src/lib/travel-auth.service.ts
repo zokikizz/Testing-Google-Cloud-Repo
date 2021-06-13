@@ -19,6 +19,10 @@ export class TravelAuthService {
     return this.http.post(`${this.baseUrl}/token`, { ...cred });
   }
 
+  silentRefresh(refresh: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/token`, { refresh });
+  }
+
   signUp(cred: SignupInterface): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, { ...cred });
   }

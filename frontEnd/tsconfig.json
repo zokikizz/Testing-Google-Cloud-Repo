@@ -28,6 +28,10 @@
       "travel-core": [
         "dist/travel-core/travel-core",
         "dist/travel-core"
+      ],
+      "trip": [
+        "dist/trip/trip",
+        "dist/trip"
       ]
     }
   },

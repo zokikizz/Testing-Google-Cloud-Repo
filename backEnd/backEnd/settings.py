@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ild(0q0rdjs_%%^@nr5c_hrh^bbisacr2ol5orqy(-4mxs25h*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -188,3 +188,4 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+

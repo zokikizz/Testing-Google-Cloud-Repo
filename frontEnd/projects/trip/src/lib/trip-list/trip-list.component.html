@@ -1,0 +1,7 @@
+<p>trip-list works!</p>
+
+<div *ngIf="trips | async as t">
+  {{ t | json }}
+</div>
+
+<button mat-button (click)="addTrip()">Add trip</button>

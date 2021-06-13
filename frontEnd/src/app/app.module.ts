@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {TravelAuthModule} from '../../projects/travel-auth/src/lib/travel-auth.module';
 import {APP_CONFIG, AppConfig} from '../../projects/travel-core/src/lib/app.config';
 import {RouterModule} from '@angular/router';
+import {TripModule} from '../../projects/trip/src/lib/trip.module';
 
 const appConfigFactory = () => ({
     baseUrl: 'testUrl'
@@ -21,6 +22,7 @@ const appConfigFactory = () => ({
     AppRoutingModule,
     BrowserAnimationsModule,
     TravelAuthModule,
+    TripModule,
   ],
   providers: [
     {

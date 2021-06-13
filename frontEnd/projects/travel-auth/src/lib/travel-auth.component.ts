@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TravelAuthService} from './travel-auth.service';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {LoginInterface} from './interfaces/login.interface';
 import {SignupInterface} from './interfaces/signup.interface';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatTabGroup} from '@angular/material/tabs';
+import {connectableObservableDescriptor} from 'rxjs/internal/observable/ConnectableObservable';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'lib-TravelAuth',
   template: `
     <h1>Travel app</h1>
-    <mat-tab-group class="login-container sign-up-container">
+    <mat-tab-group class="login-container sign-up-container" #authTabGroup>
       <mat-tab label="Login">
         <form class="login-container" [formGroup]="loginForm">
           <mat-form-field class="example-full-width">
@@ -65,12 +68,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   `,
   styleUrls: ['travel-auth.component.scss']
 })
-export class TravelAuthComponent implements OnInit {
+export class TravelAuthComponent {
 
   loginForm: FormGroup;
   signUpForm: FormGroup;
+  @ViewChild('authTabGroup', { static: false }) tabGroup: MatTabGroup | undefined;
 
-  constructor(private auth: TravelAuthService, private fb: FormBuilder) {
+  constructor(private auth: TravelAuthService, private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -83,12 +87,9 @@ export class TravelAuthComponent implements OnInit {
     }, { validators: passwordValidation });
   }
 
-  ngOnInit(): void {
-  }
-
   logIn(): void {
-    this.auth.logIn(this.loginForm.value as LoginInterface).subscribe(v => {
-      console.log(v);
+    this.auth.logIn(this.loginForm.value as LoginInterface).subscribe(() => {
+      this.router.navigate(['/trip/list']);
     });
   }
 
@@ -96,8 +97,10 @@ export class TravelAuthComponent implements OnInit {
     if (this.signUpForm.valid) {
       const signUpForm = this.signUpForm.value;
       this.auth.signUp({ username: signUpForm.username, email: signUpForm.email, password: signUpForm.password1 } as SignupInterface)
-        .subscribe(v => {
-        console.log(v);
+        .subscribe(() => {
+          if (this.tabGroup) {
+            this.tabGroup.selectedIndex = 0;
+          }
       });
     }
   }

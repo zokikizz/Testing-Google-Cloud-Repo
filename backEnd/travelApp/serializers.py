@@ -22,6 +22,12 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("id", "username", "email", "password",)
 
 
+class UsernameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = ("id", "username")
+
+
 class TripSerializer(serializers.ModelSerializer):
 
     class Meta:

@@ -207,6 +207,46 @@
           }
         }
       }
+    },
+    "trip": {
+      "projectType": "library",
+      "root": "projects/trip",
+      "sourceRoot": "projects/trip/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/trip/tsconfig.lib.json",
+            "project": "projects/trip/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/trip/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/trip/src/test.ts",
+            "tsConfig": "projects/trip/tsconfig.spec.json",
+            "karmaConfig": "projects/trip/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/trip/tsconfig.lib.json",
+              "projects/trip/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "TravelingUI"

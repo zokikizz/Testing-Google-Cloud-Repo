@@ -101,6 +101,7 @@ export class TravelAuthComponent {
           if (this.tabGroup) {
             this.tabGroup.selectedIndex = 0;
           }
+          this.signUpForm.reset();
       });
     }
   }

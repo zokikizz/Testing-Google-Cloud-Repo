@@ -17,7 +17,7 @@ export interface Transit {
   // @ts-ignore
   start_destination?: Destination | undefined;
   // @ts-ignore
-  start_destination?: Destination | undefined;
+  end_destination?: Destination | undefined;
 }
 
 @Component({
@@ -62,7 +62,12 @@ export class TransitDialogComponent implements OnInit {
   }
 
   onSave(): void {
-
+    this.transitService.saveTransition(this.data.id, { ...this.transitForm.value,
+      start_destination: this.transitForm.value.start_destination?.id,
+      end_destination: this.transitForm.value.end_destination?.id
+    }).subscribe( v => {
+      this.transitList = this.transitService.getList(this.data.id);
+    });
   }
 
   onUpdate(): void {

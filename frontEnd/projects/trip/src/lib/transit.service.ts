@@ -13,4 +13,8 @@ export class TransitService {
   getList(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/transit/${id}/list`);
   }
+
+  saveTransition(id: number, param2: any): Observable<any> {
+   return this.http.post(`${this.baseUrl}/transit/${id}/create`, param2);
+  }
 }

@@ -47,6 +47,7 @@ export class TransitDialogComponent implements OnInit {
       trip: null,
       start_destination: null,
       end_destination: null,
+      id: 0,
     });
   }
 
@@ -56,6 +57,7 @@ export class TransitDialogComponent implements OnInit {
   }
 
   onClickFillForm(transit: Transit): void {
+    this.transitForm.setValue(transit);
   }
 
   removeDestination(transit: Transit): void {

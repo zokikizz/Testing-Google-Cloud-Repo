@@ -59,7 +59,7 @@
 
     <mat-form-field>
       <mat-label>Start destination</mat-label>
-      <mat-select formControlName="start_destination">
+      <mat-select formControlName="start_destination" [compareWith]="compare">
         <mat-option *ngFor="let dest of (destinationList | async)?.results" [value]="dest">
           {{ dest.location }}
         </mat-option>
@@ -68,7 +68,7 @@
 
     <mat-form-field>
       <mat-label>End destination</mat-label>
-      <mat-select formControlName="end_destination">
+      <mat-select formControlName="end_destination" [compareWith]="compare">
         <mat-option *ngFor="let dest of (destinationList | async)?.results" [value]="dest">
           {{ dest.location }}
         </mat-option>

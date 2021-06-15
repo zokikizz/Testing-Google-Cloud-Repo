@@ -16,8 +16,13 @@ class TransitCreateAPI(CreateAPIView):
         travel_pk = kwargs['travel_pk']
         trip = Trip.objects.get(pk=travel_pk)
 
-        start_destination = Destination.objects.get(pk=request.data['start_destination'])
-        end_destination = Destination.objects.get(pk=request.data['end_destination'])
+        start_destination = None
+        end_destination = None
+        if request.data['start_destination']:
+            start_destination = Destination.objects.get(pk=request.data['start_destination'])
+
+        if request.data['end_destination']:
+            end_destination = Destination.objects.get(pk=request.data['end_destination'])
 
         new_transit = {
             **request.data,

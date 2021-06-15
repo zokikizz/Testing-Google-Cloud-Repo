@@ -57,25 +57,23 @@
       </mat-select>
     </mat-form-field>
 
-<!--    <mat-form-field>-->
-<!--      <mat-label>Location:</mat-label>-->
-<!--      <input matInput placeholder="Location" formControlName="location">-->
-<!--    </mat-form-field>-->
+    <mat-form-field>
+      <mat-label>Start destination</mat-label>
+      <mat-select formControlName="start_destination">
+        <mat-option *ngFor="let dest of (destinationList | async)?.results" [value]="dest">
+          {{ dest.location }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-
-<!--    <mat-form-field>-->
-<!--      <mat-label>Booking</mat-label>-->
-<!--      <input matInput placeholder="Booking" formControlName="booking">-->
-<!--    </mat-form-field>-->
-
-
-<!--    <mat-form-field>-->
-<!--      <mat-label>Booking price</mat-label>-->
-<!--      <input matInput placeholder="booking_price" type="number" formControlName="booking_price">-->
-<!--    </mat-form-field>-->
-
-<!--    <mat-checkbox id="start_destination" class="start_destination" color="primary"-->
-<!--                  formControlName="start_destination">Start destination</mat-checkbox>-->
+    <mat-form-field>
+      <mat-label>End destination</mat-label>
+      <mat-select formControlName="end_destination">
+        <mat-option *ngFor="let dest of (destinationList | async)?.results" [value]="dest">
+          {{ dest.location }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 
 

@@ -5,6 +5,7 @@ import {TransitService} from '../transit.service';
 import {ListResponseInterface, Trip} from '../interfaces/list-response.interface';
 import {Observable} from 'rxjs';
 import {Destination} from '../destination-dialog/destination-dialog.component';
+import {DestinationService} from '../destination.service';
 
 export interface Transit {
   company_name?: string;
@@ -26,6 +27,7 @@ export interface Transit {
 })
 export class TransitDialogComponent implements OnInit {
   transitList: Observable<ListResponseInterface<Transit>> | undefined;
+  destinationList: Observable<ListResponseInterface<Destination>> | undefined;
   transitForm: FormGroup;
   transitTypes: string[] = ['train', 'bus', 'plane', 'ship'];
 
@@ -33,7 +35,8 @@ export class TransitDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<TransitDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder,
-    private transitService: TransitService) {
+    private transitService: TransitService,
+    private destinationService: DestinationService) {
     this.transitForm = this.fb.group({
       company_name: '',
       price: 0,
@@ -49,6 +52,7 @@ export class TransitDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.transitList = this.transitService.getList(this.data.id);
+    this.destinationList = this.destinationService.getListOfDestination(this.data.id);
   }
 
   onClickFillForm(transit: Transit): void {

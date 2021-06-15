@@ -17,4 +17,8 @@ export class TransitService {
   saveTransition(id: number, param2: any): Observable<any> {
    return this.http.post(`${this.baseUrl}/transit/${id}/create`, param2);
   }
+
+  removeTransit(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/transit/${id}`);
+  }
 }

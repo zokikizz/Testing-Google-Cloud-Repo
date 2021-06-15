@@ -5,6 +5,7 @@ from transitionApp.models import Transit
 
 
 class TransitSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField()
     start_destination = DestinationSerializer()
     end_destination = DestinationSerializer()
 

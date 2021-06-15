@@ -8,6 +8,7 @@ import {Destination} from '../destination-dialog/destination-dialog.component';
 import {DestinationService} from '../destination.service';
 
 export interface Transit {
+  id?: number;
   company_name?: string;
   price?: number;
   transit_type?: any;
@@ -30,6 +31,7 @@ export class TransitDialogComponent implements OnInit {
   destinationList: Observable<ListResponseInterface<Destination>> | undefined;
   transitForm: FormGroup;
   transitTypes: string[] = ['train', 'bus', 'plane', 'ship'];
+  selected: Transit| null = null;
 
   constructor(
     public dialogRef: MatDialogRef<TransitDialogComponent>,
@@ -58,19 +60,30 @@ export class TransitDialogComponent implements OnInit {
 
   onClickFillForm(transit: Transit): void {
     this.transitForm.setValue(transit);
+    this.selected = transit;
   }
 
   removeDestination(transit: Transit): void {
+    if (transit && transit.id) {
+      this.transitService.removeTransit(transit.id).subscribe(() => {
+        this.transitList = this.transitService.getList(this.data.id);
+      });
+    }
   }
 
   onSave(): void {
-    this.transitService.saveTransition(this.data.id, { ...this.transitForm.value,
-      start_destination: this.transitForm.value.start_destination?.id,
-      end_destination: this.transitForm.value.end_destination?.id
-    }).subscribe( v => {
-      this.transitList = this.transitService.getList(this.data.id);
-      this.transitForm.reset();
-    });
+    if (this.selected) {
+      this.onUpdate();
+    } else {
+      this.transitService.saveTransition(this.data.id, {
+        ...this.transitForm.value,
+        start_destination: this.transitForm.value.start_destination?.id,
+        end_destination: this.transitForm.value.end_destination?.id
+      }).subscribe(v => {
+        this.transitList = this.transitService.getList(this.data.id);
+        this.transitForm.reset();
+      });
+    }
   }
 
   onUpdate(): void {

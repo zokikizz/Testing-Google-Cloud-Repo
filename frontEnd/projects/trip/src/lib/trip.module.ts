@@ -17,6 +17,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 import { TravelersDialogComponent } from './travelers-dialog/travelers-dialog.component';
+import { DestinationDialogComponent } from './destination-dialog/destination-dialog.component';
+import { TransitDialogComponent } from './transit-dialog/transit-dialog.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -25,7 +28,9 @@ import { TravelersDialogComponent } from './travelers-dialog/travelers-dialog.co
     TripComponent,
     TripListComponent,
     CreateTripDialogComponent,
-    TravelersDialogComponent
+    TravelersDialogComponent,
+    DestinationDialogComponent,
+    TransitDialogComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +47,7 @@ import { TravelersDialogComponent } from './travelers-dialog/travelers-dialog.co
     MatChipsModule,
     MatAutocompleteModule,
     MatSelectModule,
+    MatCheckboxModule,
   ],
   exports: [
     TripComponent

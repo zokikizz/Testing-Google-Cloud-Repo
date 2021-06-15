@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Manage destinations</h1>
+<div mat-dialog-content>
+
+  <div>
+    <h3>
+      <span *ngFor="let destination of (listOfDestinations | async)?.results">
+        {{ destination.location}}  {{ destination?.booking }} {{ destination?.booking_price }}
+          <button mat-button (click)="onClickFillForm(destination)"><mat-icon>edit</mat-icon></button>
+      <button mat-button (click)="removeDestination(destination)"><mat-icon>delete</mat-icon></button>
+    </span>
+
+      <ng-container *ngIf="(listOfDestinations | async)?.count === 0">
+        There are no destination currently
+      </ng-container>
+    </h3>
+
+  </div>
+
+  <form class="destination-form" [formGroup]="destinationFrom">
+
+    <mat-form-field>
+      <mat-label>Location:</mat-label>
+      <input matInput placeholder="Location" formControlName="location">
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Booking</mat-label>
+      <input matInput placeholder="Booking" formControlName="booking">
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Booking price</mat-label>
+      <input matInput placeholder="booking_price" type="number" formControlName="booking_price">
+    </mat-form-field>
+
+      <mat-checkbox id="start_destination" class="start_destination" color="primary"
+                    formControlName="start_destination">Start destination</mat-checkbox>
+  </form>
+
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="onSave()">Save</button>
+  <button mat-button (click)="onUpdate()">Update</button>
+</div>

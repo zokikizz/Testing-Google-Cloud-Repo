@@ -36,20 +36,11 @@
     <h4>Created by: {{ tripForm.get('owner')?.value?.username }}</h4>
   </div>
 
-  <div class="wrapper transit-and-destination-wrapper">
-
-    <div>
-      sdkfo
-    </div>
-    sdkfop
-    <div>
-
-    </div>
-  </div>
-
 
   <div class="wrapper action-buttons">
     <button mat-flat-button (click)="returnToList()"><mat-icon>arrow_back_ios</mat-icon> Back </button>
+    <button mat-flat-button (click)="manageTransit()"><mat-icon>flight_takeoff</mat-icon>Manage transit </button>
+    <button mat-flat-button (click)="manageDestination()"><mat-icon>location_on</mat-icon> Manage destination</button>
     <button mat-flat-button (click)="manageTravelers()"><mat-icon>airline_seat_recline_extra</mat-icon> Manage travelers</button>
     <button mat-flat-button color="primary" (click)="saveTrip()"> <mat-icon>save</mat-icon> Save</button>
   </div>

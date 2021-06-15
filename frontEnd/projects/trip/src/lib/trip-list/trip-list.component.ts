@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./trip-list.component.css']
 })
 export class TripListComponent implements OnInit {
-  trips = new BehaviorSubject<ListResponseInterface | null>(null);
+  trips = new BehaviorSubject<ListResponseInterface<Trip> | null>(null);
   destroyer$ = new Subject<void>();
 
   constructor(private tripService: TripService, private matDialog: MatDialog, private router: Router) { }
@@ -66,7 +66,7 @@ export class TripListComponent implements OnInit {
 
   loadMore(): void {
     if (this.trips.value?.next) {
-      this.tripService.getMoreTrips(this.trips.value?.next).subscribe((listResponse: ListResponseInterface) => {
+      this.tripService.getMoreTrips(this.trips.value?.next).subscribe((listResponse: ListResponseInterface<Trip>) => {
         this.setUpNewValueForList([
           ...(this.trips && this.trips.value && this.trips.value?.results ? this.trips.value?.results : []) ,
           ...(listResponse.results ? listResponse.results : [])

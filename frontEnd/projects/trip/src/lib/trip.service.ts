@@ -12,8 +12,8 @@ export class TripService {
 
   constructor(private http: HttpClient) { }
 
-  getTrips(): Observable<ListResponseInterface> {
-    return this.http.get<ListResponseInterface>(`${this.baseUrl}/trip/list`);
+  getTrips(): Observable<ListResponseInterface<Trip>> {
+    return this.http.get<ListResponseInterface<Trip>>(`${this.baseUrl}/trip/list`);
   }
 
   getTripById(id: number): Observable<Trip> {
@@ -32,8 +32,8 @@ export class TripService {
     return this.http.put<Trip>(`${this.baseUrl}/trip/${trip.id}`, { ...trip} );
   }
 
-  getMoreTrips(url: string): Observable<ListResponseInterface> {
-    return this.http.get<ListResponseInterface>(url);
+  getMoreTrips(url: string): Observable<ListResponseInterface<Trip>> {
+    return this.http.get<ListResponseInterface<Trip>>(url);
   }
 
   updateTravelers(id: number, travelers: number[]): Observable<Trip> {

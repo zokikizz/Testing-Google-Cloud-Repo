@@ -7,6 +7,8 @@ import {Trip} from '../interfaces/list-response.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {TravelersDialogComponent} from '../travelers-dialog/travelers-dialog.component';
+import {TransitDialogComponent} from '../transit-dialog/transit-dialog.component';
+import {DestinationDialogComponent} from '../destination-dialog/destination-dialog.component';
 
 @Component({
   selector: 'lib-trip',
@@ -77,5 +79,19 @@ export class TripComponent implements OnInit, OnDestroy {
         tap(value => this.trip?.next(value)),
         tap(value => this.tripForm?.setValue(value))
       ).subscribe());
+  }
+
+  manageTransit(): void {
+    this.dialog.open(TransitDialogComponent, {
+      width: '80vw',
+      data: { id: this.id }
+    });
+  }
+
+  manageDestination(): void {
+    this.dialog.open(DestinationDialogComponent, {
+      width: '80vw',
+      data: { id: this.id }
+    });
   }
 }

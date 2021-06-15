@@ -3,6 +3,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDe
 from rest_framework.response import Response
 
 from destinationApp.models import Destination
+from destinationApp.pagination import StandardResultsSetPagination
 from destinationApp.serializers import DestinationSerializer
 from travelApp.models import Trip
 
@@ -36,6 +37,7 @@ class DestinationCreateAPI(CreateAPIView):
 class DestinationListAPI(ListAPIView):
     queryset = Destination.objects.all()
     serializer_class = DestinationSerializer
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         travel_pk = self.kwargs['travel_pk']
@@ -59,9 +61,9 @@ class DestinationRetrieveUpdateDeleteAPI(RetrieveUpdateDestroyAPIView):
         trip = destination.belongs_to
 
         # update budget left
-        if request.data.booking_price:
+        if request.data['booking_price']:
             previous_booking_price = destination.booking_price
-            destination.booking_price = request.data.booking_price
+            destination.booking_price = request.data["booking_price"]
             if (trip.budget_left + previous_booking_price - destination.booking_price) < 0:
                 return Response(
                     {
@@ -72,7 +74,8 @@ class DestinationRetrieveUpdateDeleteAPI(RetrieveUpdateDestroyAPIView):
             else:
                 trip.budget_left = trip.budget_left + previous_booking_price - destination.booking_price
 
-        new_destination = {**request.data, 'belongs_to': trip, id: destination.id}
+        new_destination = {**request.data, 'belongs_to': trip, 'id': destination.id}
+        print(new_destination)
         destination = Destination(**new_destination)
 
         destination.save()

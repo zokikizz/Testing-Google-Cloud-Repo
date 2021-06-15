@@ -1,8 +1,8 @@
-export interface ListResponseInterface {
+export interface ListResponseInterface<T> {
   count?: number;
   next?: string;
   previous?: string;
-  results?: Trip[];
+  results?: T[];
 }
 
 export interface Trip {

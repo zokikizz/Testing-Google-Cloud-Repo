@@ -67,6 +67,7 @@ export class TransitDialogComponent implements OnInit {
       end_destination: this.transitForm.value.end_destination?.id
     }).subscribe( v => {
       this.transitList = this.transitService.getList(this.data.id);
+      this.transitForm.reset();
     });
   }
 

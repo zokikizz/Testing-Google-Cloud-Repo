@@ -61,6 +61,7 @@ export class DestinationDialogComponent implements OnInit {
   onSave(): void {
     this.destinationService.saveDestination(this.data.id, { ...this.destinationFrom.value }).subscribe(() => {
       this.listOfDestinations = this.destinationService.getListOfDestination(this.data.id);
+      this.destinationFrom.reset();
     });
   }
 

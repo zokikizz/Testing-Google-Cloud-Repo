@@ -20,6 +20,8 @@ import { TravelersDialogComponent } from './travelers-dialog/travelers-dialog.co
 import { DestinationDialogComponent } from './destination-dialog/destination-dialog.component';
 import { TransitDialogComponent } from './transit-dialog/transit-dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 
@@ -48,6 +50,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatAutocompleteModule,
     MatSelectModule,
     MatCheckboxModule,
+
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     TripComponent

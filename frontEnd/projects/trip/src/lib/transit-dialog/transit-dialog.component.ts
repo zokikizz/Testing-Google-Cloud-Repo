@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {TransitService} from '../transit.service';
 import {ListResponseInterface, Trip} from '../interfaces/list-response.interface';
 import {Observable} from 'rxjs';
+import {Destination} from '../destination-dialog/destination-dialog.component';
 
 export interface Transit {
   company_name?: string;
@@ -12,6 +13,10 @@ export interface Transit {
   start?: Date | undefined;
   end?: Date | undefined;
   trip?: Trip | number;
+  // @ts-ignore
+  start_destination?: Destination | undefined;
+  // @ts-ignore
+  start_destination?: Destination | undefined;
 }
 
 @Component({
@@ -22,12 +27,24 @@ export interface Transit {
 export class TransitDialogComponent implements OnInit {
   transitList: Observable<ListResponseInterface<Transit>> | undefined;
   transitForm: FormGroup;
+  transitTypes: string[] = ['train', 'bus', 'plane', 'ship'];
+
   constructor(
     public dialogRef: MatDialogRef<TransitDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder,
     private transitService: TransitService) {
-    this.transitForm = this.fb.group({});
+    this.transitForm = this.fb.group({
+      company_name: '',
+      price: 0,
+      transit_type: 'bus',
+      start: Date.now(),
+      end: null,
+
+      trip: null,
+      start_destination: null,
+      end_destination: null,
+    });
   }
 
   ngOnInit(): void {

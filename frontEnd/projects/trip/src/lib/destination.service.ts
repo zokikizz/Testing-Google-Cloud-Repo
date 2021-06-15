@@ -15,7 +15,6 @@ export class DestinationService {
   }
 
   saveDestination(id: number, destination: any): Observable<any> {
-    console.log(id);
     return this.http.post(`${this.baseUrl}/destination/${id}/create`, { ...destination });
   }
 

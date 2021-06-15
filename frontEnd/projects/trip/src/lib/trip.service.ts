@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ListResponseInterface, Trip} from './interfaces/list-response.interface';
-import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

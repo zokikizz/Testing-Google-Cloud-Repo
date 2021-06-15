@@ -53,11 +53,12 @@ export class DestinationDialogComponent implements OnInit {
       this.destinationFrom.value.belongs_to.id
     }).subscribe(() => {
       this.listOfDestinations = this.destinationService.getListOfDestination(this.data.id);
+      this.selectedDestination = null;
+      this.destinationFrom.reset();
     });
   }
 
   onSave(): void {
-    console.log(this.data);
     this.destinationService.saveDestination(this.data.id, { ...this.destinationFrom.value }).subscribe(() => {
       this.listOfDestinations = this.destinationService.getListOfDestination(this.data.id);
     });

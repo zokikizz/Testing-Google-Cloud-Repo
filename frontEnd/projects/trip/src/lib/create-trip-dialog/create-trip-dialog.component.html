@@ -1,1 +1,31 @@
-<p>create-trip-dialog works!</p>
+<h1 mat-dialog-title>Create new trip</h1>
+
+<mat-dialog-content>
+
+  <form [formGroup]="tripForm" class="trip_form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title*</mat-label>
+      <input matInput placeholder="Title" type="text" formControlName="title"/>
+      <mat-error *ngIf="tripForm.get('title')?.hasError('required')"> This is required field </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Budget*</mat-label>
+      <input matInput placeholder="Budget" type="number" formControlName="budget"/>
+      <mat-error *ngIf="tripForm.get('budget')?.hasError('required')"> This is required field </mat-error>
+      <mat-error *ngIf="tripForm.get('budget')?.hasError('budgetValidation')">
+        Invalid value. Value must be positive
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="createTrip()">Create</button>
+  <button mat-raised-button mat-dialog-close> Close </button>
+</mat-dialog-actions>

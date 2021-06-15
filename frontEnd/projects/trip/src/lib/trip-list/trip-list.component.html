@@ -1,7 +1,75 @@
-<p>trip-list works!</p>
+<lib-toolbar></lib-toolbar>
 
-<div *ngIf="trips | async as t">
-  {{ t | json }}
+<div *ngIf="trips | async as tripValue" class="container">
+  <div class="title">
+    <h2>Trips: {{ tripValue.results?.length }} / {{ tripValue.count }}</h2>
+
+    <button mat-flat-button color="primary" (click)="addTrip()">
+      <mat-icon>add</mat-icon> Create new trip
+    </button>
+
+  </div>
+
+  <ng-container *ngIf="tripValue.results && tripValue.results.length; else noTrips">
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let trip of tripValue.results">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ trip.title }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ trip.description }}
+
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="primary_content_container">
+        <span>
+          Total budget: {{ trip.budget }}
+        </span>
+
+          <span>
+          Left budget: {{ trip.budget_left }}
+        </span>
+
+          <span>
+          Created at: {{ trip.created | date }}
+        </span>
+
+          <span>
+
+        <button mat-flat-button><mat-icon color="primary" (click)="editTrip(trip)">edit</mat-icon></button>
+        <button mat-flat-button><mat-icon color="warn" (click)="deleteTrip(trip)">delete</mat-icon></button>
+
+        </span>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="load-more-button-wrapper">
+      <button mat-raised-button color="primary" *ngIf="
+    (tripValue && tripValue.results && tripValue.count ? tripValue.results.length < tripValue.count : false)"
+              (click)="loadMore()">
+        <mat-icon>download</mat-icon> Load more
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #noTrips>
+    <div class="no_trips">
+      <mat-icon class="bad_mood_icon" color="primary">mood_bad</mat-icon>
+      <p>There are no trips in your trip list currently</p>
+      <div>
+        <button mat-flat-button color="primary" (click)="addTrip()">
+          <mat-icon>add</mat-icon> Create new trip
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+
 </div>
 
-<button mat-button (click)="addTrip()">Add trip</button>
+<!--<button mat-button (click)="addTrip()">Add trip</button>-->

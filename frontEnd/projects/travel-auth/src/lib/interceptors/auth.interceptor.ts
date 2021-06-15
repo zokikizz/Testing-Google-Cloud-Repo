@@ -15,8 +15,10 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('auth intercept');
 
-    const authObject = JSON.parse(localStorage.getItem('auth') ?? '');
-    if (authObject !== '' && httpRequest.url.indexOf('register') === -1) {
+    const auth = localStorage.getItem('auth');
+    const authObject = auth ? JSON.parse(auth) : auth;
+
+    if (authObject !== null && httpRequest.url.indexOf('register') === -1) {
       httpRequest = httpRequest.clone({
         setHeaders: {
           Authorization: `Bearer ${authObject.access}`
@@ -25,7 +27,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(httpRequest).pipe(
       tap((v) => {
-        if ( v instanceof HttpResponse && v.body.access) {
+        if ( v instanceof HttpResponse && v.body && v.body.access &&
+          (v.url?.indexOf('token') || v.url?.indexOf('token/refresh'))
+        ) {
           localStorage.setItem('auth', JSON.stringify(v.body));
         }
       }),

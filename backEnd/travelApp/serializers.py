@@ -29,7 +29,10 @@ class UsernameSerializer(serializers.ModelSerializer):
 
 
 class TripSerializer(serializers.ModelSerializer):
+    owner = UsernameSerializer()
+    travelers = UsernameSerializer(many=True)
 
     class Meta:
         model = Trip
         fields = '__all__'
+        depth = 2

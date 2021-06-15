@@ -1,0 +1,58 @@
+<lib-toolbar></lib-toolbar>
+
+<form class="container" *ngIf="trip && tripForm" [formGroup]="tripForm">
+
+  <div class="travel-title-budget-wrapper">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Budget</mat-label>
+      <input matInput placeholder="Budget" type="number" formControlName="budget">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Budget left</mat-label>
+      <input matInput placeholder="Budget left" type="number" formControlName="budget_left">
+    </mat-form-field>
+
+  </div>
+
+  <div class="wrapper">
+    <mat-form-field>
+      <mat-label>Description {{ tripForm.get('description')?.value.length }} / 500</mat-label>
+      <textarea matInput placeholder="Description" formControlName="description" rows="5"></textarea>
+    </mat-form-field>
+
+  </div>
+
+  <div class="wrapper">
+    <h4>Last change: {{ tripForm.get('created')?.value | date }}</h4>
+  </div>
+
+  <div class="wrapper">
+    <h4>Created by: {{ tripForm.get('owner')?.value?.username }}</h4>
+  </div>
+
+  <div class="wrapper transit-and-destination-wrapper">
+
+    <div>
+      sdkfo
+    </div>
+    sdkfop
+    <div>
+
+    </div>
+  </div>
+
+
+  <div class="wrapper action-buttons">
+    <button mat-flat-button (click)="returnToList()"><mat-icon>arrow_back_ios</mat-icon> Back </button>
+    <button mat-flat-button (click)="manageTravelers()"><mat-icon>airline_seat_recline_extra</mat-icon> Manage travelers</button>
+    <button mat-flat-button color="primary" (click)="saveTrip()"> <mat-icon>save</mat-icon> Save</button>
+  </div>
+
+
+</form>

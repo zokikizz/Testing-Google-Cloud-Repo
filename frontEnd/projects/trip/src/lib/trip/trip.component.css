@@ -1,0 +1,48 @@
+.container {
+  margin: 20px 10%;
+}
+
+.travel-title-budget-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.travel-title-budget-wrapper mat-form-field {
+  width: 20vw;
+}
+
+.wrapper {
+  display: flex;
+  margin: 0 5vw;
+}
+
+.wrapper mat-form-field {
+  width: 100%;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.wrapper h4 {
+  margin: auto 20px auto 0;
+}
+
+.add-travelers-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.transit-and-destination-wrapper {
+  height: 30vh;
+  display: flex;
+}
+
+.transit-and-destination-wrapper div {
+  width: 50%;
+}
+

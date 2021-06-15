@@ -1,3 +1,5 @@
+import json
+
 from rest_framework import status, permissions
 from rest_framework.generics import (CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView)
 from rest_framework.response import Response
@@ -22,7 +24,7 @@ class TripCreateAPI(CreateAPIView):
     serializer_class = TripSerializer
 
     def post(self, request, *args, **kwargs):
-        new_trip = {**request.data, 'owner': request.user, }
+        new_trip = {**request.data, 'budget_left': request.data['budget'], 'owner': request.user, }
         trip = Trip(**new_trip)
 
         trip.save()
@@ -48,9 +50,8 @@ class TripUpdateDeleteRetrieveAPI(RetrieveUpdateDestroyAPIView):
 
     def patch(self, request, *args, **kwargs):
         trip = Trip.objects.get(pk=kwargs['pk'])
-        if request.data['travelers']:
-            trip.travelers.set(())
-            [trip.travelers.add(User.objects.get(pk=travelerId)) for travelerId in request.data['travelers']]
+        trip.travelers.set(())
+        [trip.travelers.add(User.objects.get(pk=travelerId)) for travelerId in request.data['travelers']]
 
         return Response({
             **TripSerializer(trip).data
@@ -68,3 +69,4 @@ class TripListAPI(ListAPIView):
 class UsernameListAPI(ListAPIView):
     queryset = User.objects.all()
     serializer_class = UsernameSerializer
+

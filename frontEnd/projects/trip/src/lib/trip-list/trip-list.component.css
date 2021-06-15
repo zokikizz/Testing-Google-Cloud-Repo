@@ -1,0 +1,51 @@
+.no_trips {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.no_trips .bad_mood_icon {
+  font-size: 5rem;
+  min-width: 100px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.container{
+  margin: 20px 10%;
+}
+.primary_content_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.primary_content_container span {
+  margin: auto 0;
+}
+
+.app-tool-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.load-more-button-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.load-more-button-wrapper button {
+  width: 100vw;
+}
